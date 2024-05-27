@@ -17,11 +17,8 @@ class TestShoe:
     def test_requires_int_size(self):
         '''prints "size must be an integer" if size is not an integer.'''
         stan_smith = Shoe("Adidas", 9)
-        captured_out = io.StringIO()
-        sys.stdout = captured_out
-        stan_smith.size = "not an integer"
-        sys.stdout = sys.__stdout__
-        assert captured_out.getvalue() == "size must be an integer\n"
+        error_message = stan_smith.validate_size("not an integer")
+        assert error_message == "size must be an integer"
 
     def test_can_cobble(self):
         '''says that the shoe has been repaired.'''
